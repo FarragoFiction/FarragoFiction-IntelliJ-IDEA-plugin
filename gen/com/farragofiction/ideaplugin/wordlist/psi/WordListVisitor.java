@@ -15,10 +15,6 @@ public class WordListVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitHeader(@NotNull WordListHeader o) {
-    visitPsiElement(o);
-  }
-
   public void visitIndent(@NotNull WordListIndent o) {
     visitPsiElement(o);
   }
@@ -43,7 +39,7 @@ public class WordListVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitListName(@NotNull WordListListName o) {
+  public void visitListWeight(@NotNull WordListListWeight o) {
     visitPsiElement(o);
   }
 

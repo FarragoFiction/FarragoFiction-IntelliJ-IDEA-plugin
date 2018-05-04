@@ -8,9 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface WordListListEntryTitle extends PsiElement {
 
   @NotNull
-  WordListIndent getIndent();
-
-  @NotNull
   WordListProperty getProperty();
 
 }

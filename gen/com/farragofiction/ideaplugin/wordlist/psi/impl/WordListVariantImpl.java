@@ -32,4 +32,10 @@ public class WordListVariantImpl extends ASTWrapperPsiElement implements WordLis
     return PsiTreeUtil.getChildrenOfTypeAsList(this, WordListIndent.class);
   }
 
+  @Override
+  @NotNull
+  public WordListProperty getProperty() {
+    return findNotNullChildByClass(WordListProperty.class);
+  }
+
 }

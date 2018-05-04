@@ -5,12 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface WordListListInclude extends PsiElement {
-
-  @NotNull
-  WordListIndent getIndent();
-
-  @NotNull
-  WordListListWeight getListWeight();
+public interface WordListListWeight extends PsiElement {
 
 }

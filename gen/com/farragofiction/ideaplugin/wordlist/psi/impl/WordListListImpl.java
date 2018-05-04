@@ -44,10 +44,4 @@ public class WordListListImpl extends ASTWrapperPsiElement implements WordListLi
     return PsiTreeUtil.getChildrenOfTypeAsList(this, WordListListInclude.class);
   }
 
-  @Override
-  @NotNull
-  public WordListListName getListName() {
-    return findNotNullChildByClass(WordListListName.class);
-  }
-
 }

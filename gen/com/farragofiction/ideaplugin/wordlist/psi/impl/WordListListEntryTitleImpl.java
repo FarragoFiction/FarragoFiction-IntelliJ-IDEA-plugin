@@ -28,12 +28,6 @@ public class WordListListEntryTitleImpl extends ASTWrapperPsiElement implements 
 
   @Override
   @NotNull
-  public WordListIndent getIndent() {
-    return findNotNullChildByClass(WordListIndent.class);
-  }
-
-  @Override
-  @NotNull
   public WordListProperty getProperty() {
     return findNotNullChildByClass(WordListProperty.class);
   }

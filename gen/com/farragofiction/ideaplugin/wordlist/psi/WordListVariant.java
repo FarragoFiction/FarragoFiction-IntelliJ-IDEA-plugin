@@ -10,4 +10,7 @@ public interface WordListVariant extends PsiElement {
   @NotNull
   List<WordListIndent> getIndentList();
 
+  @NotNull
+  WordListProperty getProperty();
+
 }

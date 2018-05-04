@@ -34,8 +34,8 @@ public class WordListListIncludeImpl extends ASTWrapperPsiElement implements Wor
 
   @Override
   @NotNull
-  public WordListProperty getProperty() {
-    return findNotNullChildByClass(WordListProperty.class);
+  public WordListListWeight getListWeight() {
+    return findNotNullChildByClass(WordListListWeight.class);
   }
 
 }

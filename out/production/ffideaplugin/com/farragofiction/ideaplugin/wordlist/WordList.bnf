@@ -13,32 +13,30 @@
     tokenTypeClass="com.farragofiction.ideaplugin.wordlist.psi.WordListTokenType"
 }
 
-wordListFile ::= header item_*
-
-header ::= "TextEngine Word List"
+wordListFile ::= HEADER item_*
 
 private item_ ::= (fileInclude|fileDefault|list|COMMENT|CRLF)
 
 indent ::= "    "
 
-fileInclude ::= INCLUDE VALUE
+fileInclude ::= INCLUDE FILENAME
 
-fileDefault ::= DEFAULT VALUE
+fileDefault ::= DEFAULT DEFAULT_SECTION
 
 // list
 
-variant ::= indent indent value
+variant ::= indent indent property
 
-listEntryTitle ::= indent property
+listEntryTitle ::= property
 
-list ::= listName (listInclude|listDefault)*(listEntry)+(listInclude|listDefault|listEntry)*
+list ::= LISTNAME (listInclude|listDefault|listEntry)*(listEntry)+(listInclude|listDefault|listEntry)*
 
 listEntry ::= indent listEntryTitle variant*
 
-listInclude ::= indent INCLUDE property
+listInclude ::= indent INCLUDE listWeight
 
 listDefault ::= indent DEFAULT property
 
-listName ::= VALUE
+property ::= (KEY SEPARATOR VALUE) | KEY
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY
+listWeight ::= (LISTNAME SEPARATOR VALUE) | LISTNAME

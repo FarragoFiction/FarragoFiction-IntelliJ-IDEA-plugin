@@ -16,7 +16,4 @@ public interface WordListList extends PsiElement {
   @NotNull
   List<WordListListInclude> getListIncludeList();
 
-  @NotNull
-  WordListListName getListName();
-
 }

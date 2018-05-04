@@ -11,14 +11,14 @@ import static com.farragofiction.ideaplugin.wordlist.psi.WordListTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.farragofiction.ideaplugin.wordlist.psi.*;
 
-public class WordListListNameImpl extends ASTWrapperPsiElement implements WordListListName {
+public class WordListListWeightImpl extends ASTWrapperPsiElement implements WordListListWeight {
 
-  public WordListListNameImpl(ASTNode node) {
+  public WordListListWeightImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull WordListVisitor visitor) {
-    visitor.visitListName(this);
+    visitor.visitListWeight(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
