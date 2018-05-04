@@ -1,0 +1,44 @@
+{
+    parserClass="com.farragofiction.ideaplugin.wordlist.parser.WordListParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="WordList"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.farragofiction.ideaplugin.wordlist.psi"
+    psiImplPackage="com.farragofiction.ideaplugin.wordlist.psi.impl"
+
+    elementTypeHolderClass="com.farragofiction.ideaplugin.wordlist.psi.WordListTypes"
+    elementTypeClass="com.farragofiction.ideaplugin.wordlist.psi.WordListElementType"
+    tokenTypeClass="com.farragofiction.ideaplugin.wordlist.psi.WordListTokenType"
+}
+
+wordListFile ::= header item_*
+
+header ::= "TextEngine Word List"
+
+private item_ ::= (fileInclude|fileDefault|list|COMMENT|CRLF)
+
+indent ::= "    "
+
+fileInclude ::= INCLUDE VALUE
+
+fileDefault ::= DEFAULT VALUE
+
+// list
+
+variant ::= indent indent value
+
+listEntryTitle ::= indent property
+
+list ::= listName (listInclude|listDefault)*(listEntry)+(listInclude|listDefault|listEntry)*
+
+listEntry ::= indent listEntryTitle variant*
+
+listInclude ::= indent INCLUDE property
+
+listDefault ::= indent DEFAULT property
+
+listName ::= VALUE
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY

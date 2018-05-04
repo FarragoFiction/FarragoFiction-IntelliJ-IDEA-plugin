@@ -1,3 +1,9 @@
+## idea
+/.idea
+*.iml
+*.ipr
+*.iws
+
 *.class
 
 # Mobile Tools for Java (J2ME)
