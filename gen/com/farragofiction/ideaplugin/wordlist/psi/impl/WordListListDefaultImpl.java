@@ -32,10 +32,4 @@ public class WordListListDefaultImpl extends ASTWrapperPsiElement implements Wor
     return findNotNullChildByClass(WordListIndent.class);
   }
 
-  @Override
-  @NotNull
-  public WordListProperty getProperty() {
-    return findNotNullChildByClass(WordListProperty.class);
-  }
-
 }

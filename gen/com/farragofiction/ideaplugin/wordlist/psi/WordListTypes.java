@@ -23,7 +23,6 @@ public interface WordListTypes {
   IElementType COMMENT = new WordListTokenType("COMMENT");
   IElementType CRLF = new WordListTokenType("CRLF");
   IElementType DEFAULT = new WordListTokenType("DEFAULT");
-  IElementType DEFAULT_SECTION = new WordListTokenType("DEFAULT_SECTION");
   IElementType FILENAME = new WordListTokenType("FILENAME");
   IElementType HEADER = new WordListTokenType("HEADER");
   IElementType INCLUDE = new WordListTokenType("INCLUDE");

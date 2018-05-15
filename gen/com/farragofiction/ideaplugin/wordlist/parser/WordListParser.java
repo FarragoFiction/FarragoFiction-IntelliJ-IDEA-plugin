@@ -67,14 +67,25 @@ public class WordListParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // DEFAULT DEFAULT_SECTION
+  // DEFAULT (KEY SEPARATOR VALUE)
   public static boolean fileDefault(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fileDefault")) return false;
     if (!nextTokenIs(b, DEFAULT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, DEFAULT, DEFAULT_SECTION);
+    r = consumeToken(b, DEFAULT);
+    r = r && fileDefault_1(b, l + 1);
     exit_section_(b, m, FILE_DEFAULT, r);
+    return r;
+  }
+
+  // KEY SEPARATOR VALUE
+  private static boolean fileDefault_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "fileDefault_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, KEY, SEPARATOR, VALUE);
+    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -117,7 +128,7 @@ public class WordListParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LISTNAME (listInclude|listDefault|listEntry)*(listEntry)+(listInclude|listDefault|listEntry)*
+  // LISTNAME listDefault* (listInclude|listEntry)+
   public static boolean list(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "list")) return false;
     if (!nextTokenIs(b, LISTNAME)) return false;
@@ -126,36 +137,23 @@ public class WordListParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, LISTNAME);
     r = r && list_1(b, l + 1);
     r = r && list_2(b, l + 1);
-    r = r && list_3(b, l + 1);
     exit_section_(b, m, LIST, r);
     return r;
   }
 
-  // (listInclude|listDefault|listEntry)*
+  // listDefault*
   private static boolean list_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "list_1")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!list_1_0(b, l + 1)) break;
+      if (!listDefault(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "list_1", c)) break;
       c = current_position_(b);
     }
     return true;
   }
 
-  // listInclude|listDefault|listEntry
-  private static boolean list_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "list_1_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = listInclude(b, l + 1);
-    if (!r) r = listDefault(b, l + 1);
-    if (!r) r = listEntry(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // (listEntry)+
+  // (listInclude|listEntry)+
   private static boolean list_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "list_2")) return false;
     boolean r;
@@ -171,50 +169,37 @@ public class WordListParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (listEntry)
+  // listInclude|listEntry
   private static boolean list_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "list_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = listEntry(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // (listInclude|listDefault|listEntry)*
-  private static boolean list_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "list_3")) return false;
-    int c = current_position_(b);
-    while (true) {
-      if (!list_3_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "list_3", c)) break;
-      c = current_position_(b);
-    }
-    return true;
-  }
-
-  // listInclude|listDefault|listEntry
-  private static boolean list_3_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "list_3_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
     r = listInclude(b, l + 1);
-    if (!r) r = listDefault(b, l + 1);
     if (!r) r = listEntry(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // indent DEFAULT property
+  // indent DEFAULT (KEY SEPARATOR VALUE)
   public static boolean listDefault(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "listDefault")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, LIST_DEFAULT, "<list default>");
     r = indent(b, l + 1);
     r = r && consumeToken(b, DEFAULT);
-    r = r && property(b, l + 1);
+    r = r && listDefault_2(b, l + 1);
     exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // KEY SEPARATOR VALUE
+  private static boolean listDefault_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "listDefault_2")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, KEY, SEPARATOR, VALUE);
+    exit_section_(b, m, null, r);
     return r;
   }
 

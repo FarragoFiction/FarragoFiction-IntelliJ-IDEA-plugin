@@ -21,7 +21,7 @@ indent ::= "    "
 
 fileInclude ::= INCLUDE FILENAME
 
-fileDefault ::= DEFAULT DEFAULT_SECTION
+fileDefault ::= DEFAULT (KEY SEPARATOR VALUE)
 
 // list
 
@@ -29,13 +29,13 @@ variant ::= indent indent property
 
 listEntryTitle ::= property
 
-list ::= LISTNAME (listInclude|listDefault|listEntry)*(listEntry)+(listInclude|listDefault|listEntry)*
+list ::= LISTNAME listDefault* (listInclude|listEntry)+
 
 listEntry ::= indent listEntryTitle variant*
 
 listInclude ::= indent INCLUDE listWeight
 
-listDefault ::= indent DEFAULT property
+listDefault ::= indent DEFAULT (KEY SEPARATOR VALUE)
 
 property ::= (KEY SEPARATOR VALUE) | KEY
 

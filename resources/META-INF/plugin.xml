@@ -27,6 +27,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.farragofiction.ideaplugin.wordlist.WordListFileTypeFactory"/>
     <lang.parserDefinition language="TextEngineWordList" implementationClass="com.farragofiction.ideaplugin.wordlist.WordListParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="TextEngineWordList" implementationClass="com.farragofiction.ideaplugin.wordlist.WordListSyntaxHighlighterFactory"/>
   </extensions>
 
   <actions>

@@ -2,7 +2,7 @@ TextEngine Word List
 
 @nouns
 @verbs
-
+// stuff
 JRheadcanon
     #onceUponATime# #verb_action@pastThird# a #noun#.: 0.5
     #onceUponATime# #verb_action@pastThird# #amount# #noun@plural|var@thing#. Every #noun|var@thing# was #noun_emotion@experience#.
@@ -14,8 +14,8 @@ JRheadcanon
     #onceUponATime# #verb_programming@pastThird# a #project# about #noun@plural|var@thing#, and now #attitude# the entire fucking thing.
     #onceUponATime# asked #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
     #onceUponATime# dared #otherPeeps|var@peep# to #verb_action# #amount# #noun@plural#.
-
-
+    beep: 0.5
+// stuff
 otherPeeps
     KR: 2.0
     PL: 2.0
@@ -103,7 +103,7 @@ amountVerySmall
 
 amountSmall
     a few
-    a couple
+    a couple// blah
     some
 
 amountMedium
