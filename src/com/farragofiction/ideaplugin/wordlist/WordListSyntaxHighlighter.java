@@ -13,23 +13,43 @@ import org.jetbrains.annotations.NotNull;
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 public class WordListSyntaxHighlighter extends SyntaxHighlighterBase {
-    public static final TextAttributesKey SEPARATOR =
-            createTextAttributesKey("SIMPLE_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
-    public static final TextAttributesKey KEY =
-            createTextAttributesKey("SIMPLE_KEY", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey VALUE =
-            createTextAttributesKey("SIMPLE_VALUE", DefaultLanguageHighlighterColors.STRING);
-    public static final TextAttributesKey COMMENT =
-            createTextAttributesKey("SIMPLE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
-    public static final TextAttributesKey BAD_CHARACTER =
-            createTextAttributesKey("SIMPLE_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
-    private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
-    private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
-    private static final TextAttributesKey[] KEY_KEYS = new TextAttributesKey[]{KEY};
-    private static final TextAttributesKey[] VALUE_KEYS = new TextAttributesKey[]{VALUE};
-    private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
+
+    // SYMBOLS #################################################
+    
+    // separators
+    public static final TextAttributesKey SEPARATOR = createTextAttributesKey("WORDLIST_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+    private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
+    // include
+    public static final TextAttributesKey INCLUDE = createTextAttributesKey("WORDLIST_INCLUDE", DefaultLanguageHighlighterColors.KEYWORD);
+    private static final TextAttributesKey[] INCLUDE_KEYS = new TextAttributesKey[]{INCLUDE};
+    // default
+    public static final TextAttributesKey DEFAULT = createTextAttributesKey("WORDLIST_DEFAULT", DefaultLanguageHighlighterColors.MARKUP_ATTRIBUTE);
+    private static final TextAttributesKey[] DEFAULT_KEYS = new TextAttributesKey[]{DEFAULT};
+
+    // HEADERS #################################################
+
+    // header
+    public static final TextAttributesKey HEADER = createTextAttributesKey("WORDLIST_HEADER", DefaultLanguageHighlighterColors.KEYWORD);
+    private static final TextAttributesKey[] HEADER_KEYS = new TextAttributesKey[]{HEADER};
+    // list names
+    public static final TextAttributesKey LISTNAME = createTextAttributesKey("WORDLIST_LISTNAME", DefaultLanguageHighlighterColors.KEYWORD);
+    private static final TextAttributesKey[] LISTNAME_KEYS = new TextAttributesKey[]{LISTNAME};
+
+    // OTHER #################################################
+
+    // text value
+    public static final TextAttributesKey TEXTVALUE = createTextAttributesKey("WORDLIST_TEXTVALUE", DefaultLanguageHighlighterColors.STRING);
+    private static final TextAttributesKey[] TEXTVALUE_KEYS = new TextAttributesKey[]{TEXTVALUE};
+
+    // comment
+    public static final TextAttributesKey COMMENT = createTextAttributesKey("WORDLIST_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
+    private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
+
+    // bad character
+    public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("WORDLIST_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
+    private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
 
     @NotNull
     @Override
@@ -42,14 +62,23 @@ public class WordListSyntaxHighlighter extends SyntaxHighlighterBase {
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(WordListTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;
+        } else if (tokenType.equals(WordListTypes.INCLUDE)) {
+            return INCLUDE_KEYS;
+        } else if (tokenType.equals(WordListTypes.DEFAULT)) {
+            return DEFAULT_KEYS;
+
+        } else if (tokenType.equals(WordListTypes.HEADER)) {
+            return HEADER_KEYS;
+        } else if (tokenType.equals(WordListTypes.LISTNAME)) {
+            return LISTNAME_KEYS;
+
         } else if (tokenType.equals(WordListTypes.KEY)) {
-            return KEY_KEYS;
-        } else if (tokenType.equals(WordListTypes.VALUE)) {
-            return VALUE_KEYS;
+            return TEXTVALUE_KEYS;
         } else if (tokenType.equals(WordListTypes.COMMENT)) {
             return COMMENT_KEYS;
         } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {
             return BAD_CHAR_KEYS;
+
         } else {
             return EMPTY_KEYS;
         }
